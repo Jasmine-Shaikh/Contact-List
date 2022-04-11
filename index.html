@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        header {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            margin: 0%;
+        }
+        
+        a {
+            text-decoration: none;
+            color: teal;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: 30px;
+            padding: 15px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+        
+        input {
+            border-color: lightgray;
+            background-color: white;
+            padding: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        button {
+            border-style: none;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 50px;
+            margin: 10px 3px 25px 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="./index.html">Home</a>
+        <a href="./contact.html">Contact List</a>
+        <a href="./favourites.html">Favourites</a>
+    </header>
+    <div id="main">
+        <form>
+            <h3>Enter your contact details</h3>
+            <input type="text" placeholder="Enter Contact name" id="name">
+            <input type="number" placeholder="Enter mobile number" id="mobileNumber">
+            <select id="contactType">
+               <option selected disabled hidden>Select Type</option>
+               <option value="Family">Family</option>
+               <option value="Friends">Friends</option>
+               <option value="Others">Others</option>
+           </select>
+            <button type="submit" onclick="saveContact()">Submit</button>
+        </form>
+    </div>
+</body>
+<script>
+    var contactDetails = [];
+
+    function saveContact() {
+
+        contactDetails.push({
+            name: document.getElementById('name').value,
+            mobile: document.getElementById('mobileNumber').value,
+            type: document.getElementById('contactType').value,
+
+        })
+
+        localStorage.setItem('contactList', JSON.stringify(contactDetails));
+        alert('Added contact to your Contact List!')
+    }
+</script>
+
+</html>

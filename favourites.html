@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite COntacts</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    header {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        margin: 0%;
+    }
+    
+    a {
+        text-decoration: none;
+        color: teal;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 10px;
+    }
+    
+    table {
+        width: 800px;
+        height: 45px;
+        margin-top: 20px;
+    }
+    
+    th {
+        background-color: teal;
+        color: white;
+    }
+</style>
+
+<body>
+    <header>
+        <a href="./index.html">Home</a>
+        <a href="./contact.html">Contact List</a>
+        <a href="./favourites.html">Favourites</a>
+    </header>
+
+    <div id="main">
+        <table id="contactDisplay">
+            <tr>
+                <th>Contact Name</th>
+                <th>Mobile Number</th>
+                <th>Type</th>
+            </tr>
+        </table>
+    </div>
+
+</body>
+<script>
+    var favouriteDetails;
+
+
+    if (localStorage.getItem('favourites') === null) {
+        favouriteDetails = [];
+    } else {
+        favouriteDetails = JSON.parse(localStorage.getItem('favourites'))
+    }
+
+    function contactDataDisplay() {
+        favouriteDetails.forEach(function(ele) {
+
+            var container = document.createElement('tr');
+            container.setAttribute('class', "detailsRow");
+
+            var name = document.createElement('td');
+            name.setAttribute('id', "name");
+            name.innerText = ele.name;
+
+            var mobile = document.createElement('td');
+            mobile.setAttribute('id', "mobile");
+            mobile.innerText = ele.mobile;
+
+            var type = document.createElement('td');
+            type.setAttribute('id', "type")
+            type.innerText = ele.name;
+
+
+            document.getElementById('contactDisplay').append(container);
+            container.append(name, mobile, type)
+        })
+
+    }
+    contactDataDisplay()
+</script>
+
+</html>
